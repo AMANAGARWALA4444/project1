@@ -1,5 +1,6 @@
 const Conservation = require('../models/conservationModel.js');
 const Message = require('../models/messageModel');
+const { getReceiverSocketID, io } = require('../socket/socket');
 
 module.exports.sendMessage = async (req, res) =>
 {
@@ -32,6 +33,12 @@ module.exports.sendMessage = async (req, res) =>
         }
 
         await Promise.all([conservation.save(), newMessage.save()]);
+
+        const receiverSocketID = getReceiverSocketID(receiverID)
+        if(receiverSocketID)
+        {
+            io.to(receiverSocketID).emit("newMessage", newMessage);
+        }
 
         return res.status(200).json(newMessage);
     }
