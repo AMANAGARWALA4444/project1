@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import useConversation from '../zustand/useConversation';
+import { Backend } from '../.config';
 
 const useGetMessages = () => 
 {
@@ -16,7 +17,7 @@ const useGetMessages = () =>
             {
                 setLoading(true);
 
-                const res = await fetch(`/api/messages/${selectedConversation._id}`);
+                const res = await fetch(`${Backend}/api/messages/${selectedConversation._id}`);
 
                 const data = await res.json();
 

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Backend } from '../.config';
 
 const useGetConversations = () => 
 {
     const[loading, setLoading] = useState(false);
     const[conversations, setConversations] = useState([]);
+
+
     
     useEffect(() => 
     {
@@ -13,7 +16,7 @@ const useGetConversations = () =>
             setLoading(true);
             try
             {
-                const res = await fetch(`/api/users/`);
+                const res = await fetch(`${Backend}/api/users/`);
 
                 const data = await res.json();
 

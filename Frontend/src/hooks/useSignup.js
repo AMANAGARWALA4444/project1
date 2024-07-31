@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
+import { Backend } from '../.config';
 
 
 function handleInputErrors({fullName, userName, password, confirmPassword, gender})
@@ -43,7 +44,7 @@ const useSignup = () =>
         setLoading(true);
         try
         {
-            const res = await fetch("/api/auth/signup", 
+            const res = await fetch(`${Backend}/api/auth/signup`, 
             {
                 method : "POST",
                 headers : {"Content-Type" : "application/json"},

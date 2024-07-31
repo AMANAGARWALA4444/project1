@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
+import { Backend } from '../.config';
 
 function handleInputErrors(userName, password)
 {
@@ -30,7 +31,7 @@ const useLogin = () =>
 
             setLoading(true);
 
-            const res = await fetch("api/auth/login",
+            const res = await fetch(`${Backend}/api/auth/login`,
             {
                 method : "POST",
                 headers : {"Content-Type" : "application/json"},
