@@ -1,6 +1,7 @@
 import { React, createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "./AuthContext";
 import { io } from "socket.io-client";
+import { Backend } from "../.config";
 
 export const SocketContext = createContext();
 
@@ -19,7 +20,7 @@ export const SocketContextProvider = ({children}) =>
     {
         if(authUser)
         {
-            const socket = io("http://localhost:5000",
+            const socket = io(Backend,
                 {
                     query : 
                     {
